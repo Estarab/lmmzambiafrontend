@@ -448,85 +448,71 @@ function RegistrationForm({ onClose }) {
 
           </div>
 
-          {/* ===========================================
-              CITY / RESIDENCE
-          =========================================== */}
+         <div className="formRow">
 
-          <div className="formRow">
+  <div className="formGroup">
+    <label>City</label>
 
-            <div className="formGroup">
+    <input
+      type="text"
+      name="city"
+      placeholder="City"
+      required
+      value={formData.city}
+      onChange={handleChange}
+    />
+  </div>
 
-              <label>
-                City
-              </label>
+  <div className="formGroup">
+    <label>Residence</label>
 
-              <input
-                type="text"
-                name="city"
-                placeholder="City"
-                required
-                value={formData.city}
-                onChange={handleChange}
-              />
-
-            </div>
-
-            <div className="formGroup">
-
-              <label>
-                Residence
-              </label>
-
-              <input
-                type="text"
-                name="residence"
-                placeholder="Residence"
-                required
-                value={formData.residence}
-                onChange={handleChange}
-              />
-
-            </div>
-
-            <div className="formGroup">
-
-  <label>
-    Are you a member of Christ Embassy?
-  </label>
-
-  <select
-    name="christEmbassyMember"
-    required
-    value={formData.christEmbassyMember}
-    onChange={handleChange}
-  >
-    <option value="">Select an option</option>
-    <option value="Yes">Yes</option>
-    <option value="No">No</option>
-  </select>
+    <input
+      type="text"
+      name="residence"
+      placeholder="Residence"
+      required
+      value={formData.residence}
+      onChange={handleChange}
+    />
+  </div>
 
 </div>
 
-<div className="formGroup">
+<div className="formRow">
 
-  <label>
-    Church / CE Branch
-  </label>
+  <div className="formGroup">
+    <label>
+      Are you a member of Christ Embassy?
+    </label>
 
-  <input
-    type="text"
-    name="churchBranch"
-    placeholder="Church / CE Branch"
-    required
-    value={formData.churchBranch}
-    onChange={handleChange}
-  />
+    <select
+      name="christEmbassyMember"
+      required
+      value={formData.christEmbassyMember}
+      onChange={handleChange}
+    >
+      <option value="">Select an option</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+  </div>
+
+  <div className="formGroup">
+    <label>
+      Church / CE Branch
+    </label>
+
+    <input
+      type="text"
+      name="churchBranch"
+      placeholder="Church / CE Branch"
+      required
+      value={formData.churchBranch}
+      onChange={handleChange}
+    />
+  </div>
 
 </div>
-
-
-
-          </div>
 
           {/* ===========================================
               SUBMIT
