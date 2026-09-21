@@ -488,6 +488,44 @@ function RegistrationForm({ onClose }) {
 
             </div>
 
+            <div className="formGroup">
+
+  <label>
+    Are you a member of Christ Embassy?
+  </label>
+
+  <select
+    name="christEmbassyMember"
+    required
+    value={formData.christEmbassyMember}
+    onChange={handleChange}
+  >
+    <option value="">Select an option</option>
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+  </select>
+
+</div>
+
+<div className="formGroup">
+
+  <label>
+    Church / CE Branch
+  </label>
+
+  <input
+    type="text"
+    name="churchBranch"
+    placeholder="Church / CE Branch"
+    required
+    value={formData.churchBranch}
+    onChange={handleChange}
+  />
+
+</div>
+
+
+
           </div>
 
           {/* ===========================================
