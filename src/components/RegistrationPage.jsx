@@ -4,6 +4,7 @@ import PhoneInput from "react-phone-input-2";
 import axios from "axios";
 import HomeImageSlider from "../components/HomeImageSlider";
 import lmmLogo from "../assets/lmmlogo.png";
+import jsPDF from "jspdf";
 
 
 
@@ -153,75 +154,55 @@ function RegistrationForm({ onClose }) {
   // =====================================================
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (submitting) {
-      return;
-    }
+  if (submitting) return;
 
-    setSubmitting(true);
+  setSubmitting(true);
 
-    try {
-      const response = await axios.post(
-  `${import.meta.env.VITE_API_URL}/api/registrations`,
-  {
-    ...formData,
-    program: "LMM Zambia Training Workshop",
-  }
-);
-
-
-      console.log(
-        "Registration response:",
-        response.data
-      );
-
-      onClose();
-
-      // =================================================
-      // REGISTRATION SUCCESSFUL
-      // =================================================
-
-      if (response.data.emailSent) {
-        navigate("/registration-success");
-        return;
+  try {
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_URL}/api/registrations`,
+      {
+        ...formData,
+        program: "LMM Zambia Training Workshop",
       }
+    );
 
-      // =================================================
-      // REGISTRATION SAVED BUT EMAIL FAILED
-      // =================================================
+    console.log("Registration response:", response.data);
 
+    // Close registration modal/form
+    onClose();
+
+    // Send complete registration data to success page
+    navigate("/registration-success", {
+      state: {
+        registration: response.data.data,
+        registrationId: response.data.registrationId,
+        qrUrl: response.data.qrUrl,
+        whatsappUrl: response.data.whatsappUrl,
+        message: response.data.message,
+      },
+    });
+
+  } catch (error) {
+    console.error("Registration error:", error);
+
+    const serverMessage = error.response?.data?.message;
+
+    if (serverMessage) {
+      alert(serverMessage);
+    } else if (error.request) {
       alert(
-        "Your registration was successful, but we could not send the confirmation email. Your registration has still been recorded."
+        "Unable to connect to the registration server. Please check your internet connection and try again."
       );
-
-      navigate("/registration-success");
-
-    } catch (error) {
-      console.error(
-        "Registration error:",
-        error
-      );
-
-      const serverMessage =
-        error.response?.data?.message;
-
-      if (serverMessage) {
-        alert(serverMessage);
-      } else if (error.request) {
-        alert(
-          "Unable to connect to the registration server. Please check your internet connection and try again."
-        );
-      } else {
-        alert(
-          "Registration failed. Please try again."
-        );
-      }
-
-    } finally {
-      setSubmitting(false);
+    } else {
+      alert("Registration failed. Please try again.");
     }
-  };
+  } finally {
+    setSubmitting(false);
+  }
+};
 
   // =====================================================
   // FORM

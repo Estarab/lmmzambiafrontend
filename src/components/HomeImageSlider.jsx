@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import slide5 from "../assets/slid5.jpg";
+import slide5 from "../assets/lmmbg.jpeg";
 
 
 // =======================================================
