@@ -5,6 +5,8 @@ import axios from "axios";
 import HomeImageSlider from "../components/HomeImageSlider";
 import lmmLogo from "../assets/lmmlogo.png";
 import jsPDF from "jspdf";
+import "react-phone-input-2/lib/style.css";
+import { parsePhoneNumberFromString } from "libphonenumber-js";
 
 
 
@@ -21,6 +23,7 @@ import {
   GraduationCap,
   KeyboardMusic,
   Drum,
+  Music2,
   Guitar,
   Mic2,
   BookOpen,
@@ -138,6 +141,32 @@ function RegistrationForm({ onClose }) {
 
   const [submitting, setSubmitting] = useState(false);
 
+  const [phoneError, setPhoneError] = useState("");
+
+  const validatePhone = (phone) => {
+  if (!phone) {
+    return "Phone number is required";
+  }
+
+  const phoneNumber = parsePhoneNumberFromString(
+    `+${phone}`
+  );
+
+  if (!phoneNumber) {
+    return "Please enter a valid phone number";
+  }
+
+  if (phoneNumber.country !== "ZM") {
+    return "Please enter a valid Zambian phone number";
+  }
+
+  if (!phoneNumber.isValid()) {
+    return "Please enter a valid Zambian phone number";
+  }
+
+  return "";
+};
+
   // =====================================================
   // HANDLE INPUT
   // =====================================================
@@ -157,6 +186,17 @@ function RegistrationForm({ onClose }) {
   e.preventDefault();
 
   if (submitting) return;
+
+   // Validate phone number before submitting
+  const phoneValidationError = validatePhone(formData.phone);
+
+  if (phoneValidationError) {
+    setPhoneError(phoneValidationError);
+    return;
+  }
+
+  // Clear any previous phone error
+  setPhoneError("");
 
   setSubmitting(true);
 
@@ -216,7 +256,7 @@ function RegistrationForm({ onClose }) {
       }}
       animate={{
         opacity: 1,
-      }}
+      }} 
       exit={{
         opacity: 0,
       }}
@@ -339,7 +379,7 @@ function RegistrationForm({ onClose }) {
               PHONE
           =========================================== */}
 
-          <div className="formGroup">
+          {/* <div className="formGroup">
 
             <label>
               Phone Number
@@ -369,7 +409,55 @@ function RegistrationForm({ onClose }) {
               }}
             />
 
-          </div>
+          </div> */}
+
+          <div className="formGroup">
+  <label>
+    Phone Number <span style={{ color: "red" }}>*</span>
+  </label>
+
+  <PhoneInput
+    country="zm"
+    value={formData.phone}
+    onChange={(phone) => {
+      setFormData({
+        ...formData,
+        phone,
+      });
+
+      const error = validatePhone(phone);
+      setPhoneError(error);
+    }}
+    enableSearch
+    countryCodeEditable={false}
+    inputStyle={{
+      width: "100%",
+      height: "48px",
+      borderRadius: "10px",
+      border: phoneError
+        ? "1px solid #dc2626"
+        : "1px solid #d1d5db",
+    }}
+    buttonStyle={{
+      borderRadius: "10px 0 0 10px",
+      border: phoneError
+        ? "1px solid #dc2626"
+        : "1px solid #d1d5db",
+    }}
+  />
+
+  {phoneError && (
+    <div
+      style={{
+        color: "#dc2626",
+        fontSize: "13px",
+        marginTop: "6px",
+      }}
+    >
+      {phoneError}
+    </div>
+  )}
+</div>
 
           {/* ===========================================
               GENDER / COUNTRY
@@ -515,6 +603,9 @@ function RegistrationForm({ onClose }) {
             Your registration details are securely
             recorded.
           </p>
+          <p className="secureText">
+            Powered By AB Nation Tech
+          </p>
 
         </form>
 
@@ -539,28 +630,28 @@ export default function LMMZambiaTraining() {
 
  const expectations = [
   {
-    icon: <GraduationCap />,
+    icon: <Music2 />,
     title: "Practical Music Training",
     text: "Learn through practical sessions designed to help you understand, practise and improve your musical skills.",
   },
 
-  {
-    icon: <Piano />,
-    title: "Keyboard",
-    text: "Get introduced to keyboard playing, chords, scales, accompaniment and practical playing techniques.",
-  },
+  // {
+  //   icon: <Piano />,
+  //   title: "Keyboard",
+  //   text: "Get introduced to keyboard playing, chords, scales, accompaniment and practical playing techniques.",
+  // },
 
-  {
-    icon: <Drum />,
-    title: "Drums",
-    text: "Discover rhythm, timing, basic drum techniques and how to keep a strong musical groove.",
-  },
+  // {
+  //   icon: <Drum />,
+  //   title: "Drums",
+  //   text: "Discover rhythm, timing, basic drum techniques and how to keep a strong musical groove.",
+  // },
 
-  {
-    icon: <Guitar />,
-    title: "Guitar",
-    text: "Learn the foundations of guitar playing, chords, rhythm patterns and practical accompaniment.",
-  },
+ {
+  icon: <Piano />,
+  title: "Music Instruments",
+  text: "Learn to play a variety of musical instruments, including guitar, piano, drums, keyboard, bass and more.",
+},
 
   {
     icon: <Mic2 />,
@@ -604,11 +695,11 @@ export default function LMMZambiaTraining() {
     text: "Gain confidence through practical participation, learning and opportunities to express yourself.",
   },
 
-  {
-    icon: <Heart />,
-    title: "Connect & Grow",
-    text: "Meet other people who love music, share experiences and build meaningful connections.",
-  },
+  // {
+  //   icon: <Heart />,
+  //   title: "Connect & Grow",
+  //   text: "Meet other people who love music, share experiences and build meaningful connections.",
+  // },
 ];
 
   return (
@@ -699,7 +790,7 @@ export default function LMMZambiaTraining() {
               delay: 0.2,
             }}
           >
-            ONE DAY OF IMPACT THAT CAN
+            ONE DAY OF IMPACT THAT WILL
             <br />
             <span>
               CHANGE EVERYTHING!
@@ -883,8 +974,8 @@ export default function LMMZambiaTraining() {
         </h3>
 
         <p>
-          Get practical exposure to musical instruments
-          and discover how music comes together.
+          Get practical music skills
+          and discover what True Praise and Worship is.
         </p>
 
       </div>
@@ -914,7 +1005,7 @@ export default function LMMZambiaTraining() {
     >
 
       <img
-        src="https://images.unsplash.com/photo-1524650359799-842906ca1c06?auto=format&fit=crop&w=1200&q=85"
+        src="https://res.cloudinary.com/dkxlzz3gd/image/upload/v1790061158/WhatsApp_Image_2026-09-03_at_09.01.46_svb75i.jpg"
         alt="Musicians playing drums and guitar"
       />
 
@@ -931,8 +1022,8 @@ export default function LMMZambiaTraining() {
         </h3>
 
         <p>
-          Learn, practise and develop skills that can
-          help you grow as a musician.
+          Learn, practise and develop skills that will
+          help you understand music better.
         </p>
 
       </div>

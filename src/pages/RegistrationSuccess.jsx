@@ -1028,7 +1028,7 @@ Thank you.
               WHATSAPP
           ================================================= */}
 
-          <div className="bg-green-50 border border-green-200 rounded-2xl p-5 mb-6">
+          {/* <div className="bg-green-50 border border-green-200 rounded-2xl p-5 mb-6">
 
             <div className="flex items-center gap-3 mb-2">
 
@@ -1055,7 +1055,7 @@ Thank you.
               Send My Details on WhatsApp
             </a>
 
-          </div>
+          </div> */}
 
           {/* =================================================
               BACK HOME
