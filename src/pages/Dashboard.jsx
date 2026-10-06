@@ -132,8 +132,8 @@ export default function Dashboard() {
             }
           >
             <option value="">All Programs</option>
-            <option value="Lusaka">Lusaka</option>
-            <option value="Harare">Harare</option>
+            {/* <option value="Lusaka">Lusaka</option> */}
+            {/* <option value="Harare">Harare</option> */}
           </select>
 
           <input
@@ -151,14 +151,14 @@ export default function Dashboard() {
             <h2>Total Registrations</h2>
             <p>{data.length}</p>
           </div>
-          <div className="card">
+          {/* <div className="card">
             <h2>Lusaka</h2>
             <p>{countByProgram("Lusaka")}</p>
-          </div>
-          <div className="card">
+          </div> */}
+          {/* <div className="card">
             <h2>Harare</h2>
             <p>{countByProgram("Harare")}</p>
-          </div>
+          </div> */}
         </div>
 
         {/* ================= CSV EXPORT ================= */}
@@ -185,8 +185,8 @@ export default function Dashboard() {
             }
           >
             <option value="All">All Programs</option>
-            <option value="Lusaka">Lusaka</option>
-            <option value="Harare">Harare</option>
+            {/* <option value="Lusaka">Lusaka</option> */}
+            {/* <option value="Harare">Harare</option> */}
           </select>
 
           <input
