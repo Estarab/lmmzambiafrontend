@@ -8,7 +8,7 @@ import slide5 from "../assets/lmmbg.jpeg";
 // EVENT DATE
 // =======================================================
 
-const EVENT_DATE = new Date("2026-10-19T10:00:00");
+const EVENT_DATE = new Date("2026-10-30T20:30:00");
 
 // =======================================================
 // COUNTDOWN
@@ -286,7 +286,7 @@ export default function HomeImageSlider({
               <div>
                 <small>DATE</small>
                 <strong>
-                  19 OCTOBER 2026
+                  30 OCTOBER 2026
                 </strong>
               </div>
             </div>
@@ -308,7 +308,7 @@ export default function HomeImageSlider({
               <div>
                 <small>TIME</small>
                 <strong>
-                  10HRS – 16HRS
+                  20:30HRS – 05HRS
                 </strong>
               </div>
             </div>

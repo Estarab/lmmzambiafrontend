@@ -43,7 +43,7 @@ import { useNavigate } from "react-router-dom";
 // EVENT DETAILS
 // =======================================================
 
-const EVENT_DATE = new Date("2026-10-19T10:00:00");
+const EVENT_DATE = new Date("2026-10-30T20:30:00");
 
 // =======================================================
 // COUNTDOWN
@@ -826,7 +826,7 @@ export default function LMMZambiaTraining() {
                 </span>
 
                 <strong>
-                  19TH OCTOBER, 2026
+                  Friday 30th October - Saturday 31st OCTOBER, 2026
                 </strong>
               </div>
 
@@ -862,7 +862,7 @@ export default function LMMZambiaTraining() {
                 </span>
 
                 <strong>
-                  10HRS
+                  20:30HRS - 05HRS
                 </strong>
               </div>
 
@@ -1490,7 +1490,7 @@ export default function LMMZambiaTraining() {
 
         .eventDetail strong {
           display: block;
-          font-size: 18px;
+          font-size: 14px;
           color: white;
         }
 
